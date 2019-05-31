@@ -5,11 +5,9 @@
       <v-subheader>Clubs</v-subheader>
       <v-spacer></v-spacer>
       <template v-for="item in clubs">
-        <v-list-tile v-if="item.name" :key="item.name" @click="clubSelected(item)">
-          <v-list-tile-content>
-            <v-list-tile-title>{{ item.name }}</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
+        <v-list-tile v-if="item.name" :key="item.name">
+            <v-btn :to="`/`"  @click="clubSelected(item)">{{ item.name }}</v-btn>
+         </v-list-tile >
       </template>
     </v-list>
     <!-- Competitions -->
