@@ -7,7 +7,7 @@
         </v-flex>
         <v-layout row wrap>
             <v-flex v-for="game in matches" :key="game.id" xs6 class="pa-2">
-                <v-card class="card">
+                <v-card class="card" :to="`/games/${game.id}`">
                     <v-card-title primary-title>
                     <div>
                         <h2 class="headline mb-0">{{game.homeTeam.name}} vs {{game.awayTeam.name}}</h2>
