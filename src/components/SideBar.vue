@@ -1,12 +1,13 @@
 <template>
   <div>
+    <v-btn @click="changeFilter( null, null)"> Home </v-btn>
     <!-- clubs -->
     <v-list subheader>
       <v-subheader>Clubs</v-subheader>
       <v-spacer></v-spacer>
       <template v-for="item in clubs">
         <v-list-tile v-if="item.name" :key="item.name">
-            <v-btn :to="`/`"  @click="clubSelected(item)">{{ item.name }}</v-btn>
+            <v-btn @click="changeFilter('teams', item)">{{ item.name }}</v-btn>
          </v-list-tile >
       </template>
     </v-list>
@@ -15,7 +16,7 @@
       <v-subheader>Competitions</v-subheader>
       <v-spacer></v-spacer>
       <template v-for="item in competitions">
-        <v-list-tile v-if="item.name" :key="item.name" @click="competitionSelected(item)">
+        <v-list-tile v-if="item.name" :key="item.name" @click="changeFilter('competitions', item)">
           <v-list-tile-content>
             <v-list-tile-title>{{ item.name }}</v-list-tile-title>
           </v-list-tile-content>
@@ -48,11 +49,9 @@ export default {
     };
   },
   methods: {
-    clubSelected(club) {
-      stateManager.setFilter("teams", club);
-    },
-    competitionSelected(competition) {
-      stateManager.setFilter("competitions", competition);
+    changeFilter(type, value) {
+      stateManager.setFilter('filter', {type, value});
+      this.$router.push('/games')
     }
   }
 };

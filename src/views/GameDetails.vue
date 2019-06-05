@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="detail">
       {{detail.match.awayTeam.name}} - {{detail.match.homeTeam.name}} 
 
 <!-- awayTeam: {id: 73, name: "Tottenham Hotspur FC"}

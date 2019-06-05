@@ -6,10 +6,7 @@ export const stateManager  = {
         }
     },    
     setFilter (key, newValue) {
-        this.state.filter = {
-            value: newValue,
-            type: key
-        }
+        this.state[key] = newValue;
     },
     clearFilter (){
         this.state.filter = {
