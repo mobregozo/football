@@ -10,8 +10,12 @@ import GameDetails from './views/GameDetails.vue'
 import ApiService from './services/api.service'
 
 const routes = [
-  { path: '/', component: Games},
-  { path: '/games/:id', component: GameDetails} 
+  { path: '/games', component: Games},
+  { path: '/games/:id', component: GameDetails},
+  {
+    path: '/',
+    redirect: 'games'
+  } 
 ]
 
 Vue.use(Router)
