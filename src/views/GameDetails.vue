@@ -29,15 +29,11 @@ venue: "St. James' Park" -->
 
 <script>
 import ApiService from "../services/api.service";
-import { stateManager } from "../services/store.service";
 
 export default {
   data: function() {
     return {
-      detail: {
-          info: 'test'
-      },
-      shareData: stateManager.state
+      detail: {}
     };
   },
   methods: {
@@ -56,6 +52,11 @@ export default {
   },
   created() {
     this.getDetails();
+  },
+  computed: {
+    filter () {
+      return this.$store.state.filter
+    }
   }
 };
 </script>

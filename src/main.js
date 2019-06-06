@@ -2,7 +2,7 @@ import Vue from 'vue'
 import './plugins/vuetify'
 import App from './App.vue'
 import Router from 'vue-router'
-
+import { store } from './services/store.service';
 Vue.config.productionTip = false
 
 import Games from './views/Games.vue'
@@ -18,7 +18,7 @@ const routes = [
   } 
 ]
 
-Vue.use(Router)
+Vue.use(Router);
 
 const router = new Router({ 
   base: process.env.BASE_URL,
@@ -31,4 +31,5 @@ ApiService.setHeader();
 new Vue({
   render: h => h(App),
   router: router,
+  store,
 }).$mount('#app')

@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { stateManager } from "./../services/store.service";
+import { store } from "./../services/store.service";
 
 const clubsList = [
   { id: 73, name: "Tottenham" },
@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     changeFilter(type, value) {
-      stateManager.setFilter('filter', {type, value});
+      store.commit('filter', {type, value});
       this.$router.push('/games')
     }
   }

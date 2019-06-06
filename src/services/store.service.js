@@ -1,17 +1,24 @@
-export const stateManager  = {
-    state : { 
+
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex)
+
+export const store = new Vuex.Store({
+    state: { 
         filter: {
             type: null,
             value: null
-        }
-    },    
-    setFilter (key, newValue) {
-        this.state[key] = newValue;
+        },
+        loading: false
     },
-    clearFilter (){
-        this.state.filter = {
-            type: null,
-            value: null
-        }
+    mutations: {
+      filter(state, newFilter) {
+        state.filter = newFilter;
+      },
+      switchLoading(state) {
+        state.loading = !state.loading;
+        console.log('change', state.loading);
+      }
     }
-}
+  })
