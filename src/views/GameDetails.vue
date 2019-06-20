@@ -1,5 +1,5 @@
 <template>
-  <div v-if="detail">
+  <div v-if="detail.match">
       {{detail.match.awayTeam.name}} - {{detail.match.homeTeam.name}} 
 
 <!-- awayTeam: {id: 73, name: "Tottenham Hotspur FC"}
@@ -53,10 +53,10 @@ export default {
   created() {
     this.getDetails();
   },
-  computed: {
-    filter () {
-      return this.$store.state.filter
-    }
-  }
+  // computed: {
+  //   filter () {
+  //     return this.$store.state.filter
+  //   }
+  // }
 };
 </script>

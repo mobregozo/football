@@ -1,30 +1,106 @@
+
 <template>
   <div>
-    <v-btn @click="changeFilter( null, null)"> Home </v-btn>
-    <!-- clubs -->
-    <v-list subheader>
-      <v-subheader>Clubs</v-subheader>
-      <v-spacer></v-spacer>
-      <template v-for="item in clubs">
-        <v-list-tile v-if="item.name" :key="item.name">
-            <v-btn @click="changeFilter('teams', item)">{{ item.name }}</v-btn>
-         </v-list-tile >
-      </template>
-    </v-list>
-    <!-- Competitions -->
-    <v-list subheader>
-      <v-subheader>Competitions</v-subheader>
-      <v-spacer></v-spacer>
-      <template v-for="item in competitions">
-        <v-list-tile v-if="item.name" :key="item.name" @click="changeFilter('competitions', item)">
+    <v-navigation-drawer app class="hidden-sm-and-down">
+      <v-toolbar flat>
+        <v-list>
+          <v-list-tile>
+            <v-list-tile-title class="title">Football Dashboard</v-list-tile-title>
+          </v-list-tile>
+        </v-list>
+      </v-toolbar>
+
+      <v-divider></v-divider>
+
+      <v-list subheader>
+        <v-divider></v-divider>
+        <v-list-tile @click="changeFilter( null, null)">
           <v-list-tile-content>
-            <v-list-tile-title>{{ item.name }}</v-list-tile-title>
+            <v-list-tile-title>Home</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-      </template>
-    </v-list>
+      </v-list>
+
+      <v-divider></v-divider>
+
+      <v-list subheader>
+        <v-subheader>Clubs</v-subheader>
+        <v-spacer></v-spacer>
+        <v-divider></v-divider>
+        <template v-for="item in clubs">
+          <v-list-tile v-if="item.name" :key="item.name" @click="changeFilter('teams', item)">
+            <v-list-tile-content>
+              <v-list-tile-title>{{ item.name }}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </template>
+      </v-list>
+      <v-divider></v-divider>
+      <v-list subheader>
+        <v-subheader>Competitions</v-subheader>
+        <v-spacer></v-spacer>
+        <v-divider></v-divider>
+        <template v-for="item in competitions">
+          <v-list-tile
+            v-if="item.name"
+            :key="item.name"
+            @click="changeFilter('competitions', item)"
+          >
+            <v-list-tile-content>
+              <v-list-tile-title>{{ item.name }}</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </template>
+      </v-list>
+    </v-navigation-drawer>
+    <v-toolbar app>
+      <v-menu class="hidden-md-and-up">
+        <v-toolbar-side-icon slot="activator"></v-toolbar-side-icon>
+        <v-list subheader>
+          <v-divider></v-divider>
+          <v-list-tile @click="changeFilter( null, null)">
+            <v-list-tile-content>
+              <v-list-tile-title>Home</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+        </v-list>
+
+        <v-divider></v-divider>
+
+        <v-list subheader>
+          <v-subheader>Clubs</v-subheader>
+          <v-spacer></v-spacer>
+          <v-divider></v-divider>
+          <template v-for="item in clubs">
+            <v-list-tile v-if="item.name" :key="item.name" @click="changeFilter('teams', item)">
+              <v-list-tile-content>
+                <v-list-tile-title>{{ item.name }}</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </template>
+        </v-list>
+        <v-divider></v-divider>
+        <v-list subheader>
+          <v-subheader>Competitions</v-subheader>
+          <v-spacer></v-spacer>
+          <v-divider></v-divider>
+          <template v-for="item in competitions">
+            <v-list-tile
+              v-if="item.name"
+              :key="item.name"
+              @click="changeFilter('competitions', item)"
+            >
+              <v-list-tile-content>
+                <v-list-tile-title>{{ item.name }}</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+          </template>
+        </v-list>
+      </v-menu>
+    </v-toolbar>
   </div>
 </template>
+
 
 <script>
 import { store } from "./../services/store.service";
@@ -50,9 +126,12 @@ export default {
   },
   methods: {
     changeFilter(type, value) {
-      store.commit('filter', {type, value});
-      this.$router.push('/games')
+      store.dispatch("filter", { type, value });
+      this.$router.push("/games");
     }
+  },
+  created() {
+    store.dispatch("filter", { type: null, value: null });
   }
 };
 </script>
