@@ -1,6 +1,6 @@
 
 <template>
-  <div>
+  <div app>
     <v-navigation-drawer app class="hidden-sm-and-down">
       <v-toolbar flat>
         <v-list>
@@ -53,8 +53,8 @@
         </template>
       </v-list>
     </v-navigation-drawer>
-    <v-toolbar app>
-      <v-menu class="hidden-md-and-up">
+    <v-toolbar app class="hidden-md-and-up mobile-menu">
+      <v-menu >
         <v-toolbar-side-icon slot="activator"></v-toolbar-side-icon>
         <v-list subheader>
           <v-divider></v-divider>
@@ -137,4 +137,10 @@ export default {
 </script>
 
 <style>
+.mobile-menu{
+  position: absolute;
+    right: 25px;
+    top: 0;
+    z-index: 100;
+}
 </style>

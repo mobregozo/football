@@ -6,7 +6,7 @@
             </div>
         </v-flex>
         <v-layout row wrap v-if="!loading">
-            <v-flex v-for="game in games" :key="game.id" xs6 class="pa-2">
+            <v-flex v-for="game in games" :key="game.id" xs12 sm6 class="pa-2">
                 <v-card class="card" :to="`/games/${game.id}`">
                     <v-card-title primary-title>
                     <div>

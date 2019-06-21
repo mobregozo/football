@@ -1,6 +1,6 @@
 <template>
   <v-app dark>
-    <side-bar></side-bar>
+    <side-bar app></side-bar>
     <v-toolbar app>FOOTBALL DASHBOARD</v-toolbar>
     <v-content>
       <v-container fluid>
